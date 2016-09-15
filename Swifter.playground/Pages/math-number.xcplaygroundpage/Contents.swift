@@ -16,7 +16,7 @@ let a = 0.0 / 0.0
 let b = sqrt(-1.0)
 let c = 0.0 * Double.infinity
 
-let num = Double.NaN
+let num = Double.nan
 if num == num {
     print("Num is \(num)")
 } else {
@@ -29,11 +29,5 @@ if num == num {
 if num.isNaN {
     print("NaN")
 }
-
-if isnan(num) {
-    print("NaN")
-}
-
 // 输出：
-// NaN
 // NaN

@@ -26,7 +26,7 @@ Point.zero
 
 Point.ones
 
-Point.add(Point.zero, p2: Point.ones.first!)
+Point.add(p1: Point.zero, p2: Point.ones.first!)
 
 class MyClass1 {
     static var bar: String?

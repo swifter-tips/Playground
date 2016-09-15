@@ -21,12 +21,12 @@ switch x {
 }
 
 func ~=(pattern: NSRegularExpression, input: String) -> Bool {
-    return pattern.numberOfMatchesInString(input,
+    return pattern.numberOfMatches(in: input,
         options: [],
         range: NSRange(location: 0, length: input.characters.count)) > 0
 }
 
-prefix operator ~/ {}
+prefix operator ~/
 
 prefix func ~/(pattern: String) throws -> NSRegularExpression {
     return try NSRegularExpression(pattern: pattern, options: [])

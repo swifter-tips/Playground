@@ -1,19 +1,18 @@
-
 import UIKit
-import XCPlayground
+import PlaygroundSupport
 
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 class MyClass: NSObject {
-    dynamic var date = NSDate()
+    dynamic var date = Date()
 }
 
 class MyClass1: NSObject {
-    var date = NSDate()
+    var date = Date()
 }
 
 class MyChildClass: MyClass1 {
-    dynamic override var date: NSDate {
+    dynamic override var date: Date {
         get { return super.date }
         set { super.date = newValue }
     }
@@ -31,26 +30,24 @@ class Class: NSObject {
         print("初始化 MyClass，当前日期: \(myObject.date)")
         myObject.addObserver(self,
             forKeyPath: "date",
-            options: .New,
+            options: .new,
             context: &myContext)
-        
+
         delay(3) {
-            self.myObject.date = NSDate()
+            self.myObject.date = Date()
         }
     }
     
-    override func observeValueForKeyPath(keyPath: String?,
-            ofObject object: AnyObject?,
-            change: [String : AnyObject]?,
-            context: UnsafeMutablePointer<Void>)
+    override func observeValue(forKeyPath keyPath: String?,
+                            of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                              context: UnsafeMutableRawPointer?)
     {
-        if let change = change where context == &myContext {
-            let a = change[NSKeyValueChangeNewKey]
-            print("日期发生变化 \(a)")
+        if let change = change, context == &myContext {
+            let newDate = change[.newKey]
+            print("日期发生变化 \(newDate)")
         }
     }
 }
 
 let obj = Class()
-
-

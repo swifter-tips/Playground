@@ -9,13 +9,13 @@ print(name1)
 
 
 let date2 = NSDate()
-let name2 = date2.dynamicType
+let name2 = type(of: date2)
 print(name2)
 // 输出：
 // __NSDate
 
 let string = "Hello"
-let name = string.dynamicType
+let name = type(of: string)
 print(name)
 debugPrint(name)
 // 输出：

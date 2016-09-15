@@ -1,7 +1,7 @@
 
 import Foundation
 
-func test(arr: [Int]) {
+func test(_ arr: [Int]) {
     for i in arr {
         print(i)
     }

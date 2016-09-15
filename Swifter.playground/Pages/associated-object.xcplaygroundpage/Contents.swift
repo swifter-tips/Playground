@@ -24,7 +24,7 @@ extension MyClass {
 
 
 // 测试
-func printTitle(input: MyClass) {
+func printTitle(_ input: MyClass) {
     if let title = input.title {
         print("Title: \(title)")
     } else {

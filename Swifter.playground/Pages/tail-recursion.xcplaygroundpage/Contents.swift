@@ -1,7 +1,7 @@
 
 import Foundation
 
-func sum(n: UInt) -> UInt {
+func sum(_ n: UInt) -> UInt {
     if n == 0 {
         return 0
     }
@@ -12,8 +12,8 @@ sum(4)
 sum(100)
 
 
-func tailSum(n: UInt) -> UInt {
-    func sumInternal(n: UInt, current: UInt) -> UInt {
+func tailSum(_ n: UInt) -> UInt {
+    func sumInternal(_ n: UInt, current: UInt) -> UInt {
         if n == 0 {
             return current
         } else {

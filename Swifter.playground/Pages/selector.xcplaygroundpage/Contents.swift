@@ -9,14 +9,14 @@ class MyObject: NSObject {
         //...
     }
     
-    func turnByAngle(theAngle: Int, speed: Float) {
+    func turn(by angle: Int, speed: Float) {
         //...
     }
     
     func selectors() -> [Selector] {
         let someMethod = #selector(callMe)
-        let anotherMethod = #selector(callMeWithParam(_:))
-        let method = #selector(turnByAngle(_:speed:))
+        let anotherMethod = #selector(callMeWithParam(obj:))
+        let method = #selector(turn(by:speed:))
 
         return [someMethod, anotherMethod, method]
     }
@@ -24,7 +24,7 @@ class MyObject: NSObject {
     func otherSelectors() -> [Selector] {
         let someMethod = #selector(callMe)
         let anotherMethod = #selector(callMeWithParam)
-        let method = #selector(turnByAngle)
+        let method = #selector(turn)
         
         return [someMethod, anotherMethod, method]
     }
@@ -40,14 +40,13 @@ class MyObject: NSObject {
     
     func sameNameSelectors() -> [Selector] {
         let method1 = #selector(commonFunc as ()->())
-        let method2 = #selector(commonFunc as Int->Int)
+        let method2 = #selector(commonFunc as (Int)->Int)
         return [method1, method2]
     }
 }
 
 let selectors = MyObject().selectors()
 print(selectors)
-
 
 let otherSelectors = MyObject().otherSelectors()
 print(otherSelectors)

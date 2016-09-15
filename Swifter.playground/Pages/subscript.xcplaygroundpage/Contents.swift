@@ -21,7 +21,7 @@ extension Array {
         }
         
         set {
-            for (index,i) in input.enumerate() {
+            for (index,i) in input.enumerated() {
                 assert(i < self.count, "Index out of range")
                 self[i] = newValue[index]
             }

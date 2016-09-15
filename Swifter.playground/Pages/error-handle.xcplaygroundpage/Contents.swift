@@ -4,12 +4,12 @@ import Foundation
 let d = NSData()
 
 do {
-    try d.writeToFile("Hello", options: [])
+    try d.write(toFile: "Hello", options: [])
 } catch let error as NSError {
     print ("Error: \(error.domain)")
 }
 
-enum LoginError: ErrorType {
+enum LoginError: Error {
     case UserNotFound, UserPasswordNotMatch
 }
 
@@ -28,7 +28,7 @@ func login(user: String, password: String) throws {
 }
 
 do {
-    try login("onevcat", password: "123")
+    try login(user: "onevcat", password: "123")
 } catch LoginError.UserNotFound {
     print("UserNotFound")
 } catch LoginError.UserPasswordNotMatch {
@@ -37,19 +37,19 @@ do {
 
 // Do something with login user
 
-enum Error: ErrorType {
+enum E: Error {
     case Negative
 }
 
 func methodThrowsWhenPassingNegative(number: Int) throws -> Int {
     if number < 0 {
-        throw Error.Negative
+        throw E.Negative
     }
     return number
 }
 
-if let num = try? methodThrowsWhenPassingNegative(100) {
-    print(num.dynamicType)
+if let num = try? methodThrowsWhenPassingNegative(number: 100) {
+    print(type(of: num))
 } else {
     print("failed")
 }
@@ -57,7 +57,7 @@ if let num = try? methodThrowsWhenPassingNegative(100) {
 // Never do this!
 func methodThrowsWhenPassingNegative1(number: Int) throws -> Int? {
     if number < 0 {
-        throw Error.Negative
+        throw E.Negative
     }
     if number == 0 {
         return nil
@@ -65,8 +65,8 @@ func methodThrowsWhenPassingNegative1(number: Int) throws -> Int? {
     return number
 }
 
-if let num = try? methodThrowsWhenPassingNegative1(0) {
-    print(num.dynamicType)
+if let num = try? methodThrowsWhenPassingNegative1(number: 0) {
+    print(type(of: num))
 } else {
     print("failed")
 }
@@ -74,19 +74,17 @@ if let num = try? methodThrowsWhenPassingNegative1(0) {
 func methodThrows(num: Int) throws {
     if num < 0 {
         print("Throwing!")
-        throw Error.Negative
+        throw E.Negative
     }
     print("Executed!")
 }
 
-func methodRethrows(num: Int, f: Int throws -> ()) rethrows {
+func methodRethrows(num: Int, f: (Int) throws -> ()) rethrows {
     try f(num)
 }
 
 do {
-    try methodRethrows(1, f: methodThrows)
+    try methodRethrows(num: 1, f: methodThrows)
 } catch _ {
     
 }
-
-

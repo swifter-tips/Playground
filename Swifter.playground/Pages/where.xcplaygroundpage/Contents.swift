@@ -19,8 +19,16 @@ name.forEach {
 // 王二小是笔者本家
 
 let num: [Int?] = [48, 99, nil]
+
+let n = num.flatMap {$0}
+for score in n where score > 60 {
+    print("及格啦 - \(score)")
+}
+// 输出：
+// 及格啦 - Optional(99)
+
 num.forEach {
-    if let score = $0 where score > 60 {
+    if let score = $0, score > 60 {
         print("及格啦 - \(score)")
     } else {
         print(":(")
@@ -31,17 +39,10 @@ num.forEach {
 // 及格啦 - 99
 // :(
 
-for score in num where score > 60 {
-    print("及格啦 - \(score)")
-}
-// 输出：
-// 及格啦 - Optional(99)
-
 let sortableArray: [Int] = [3,1,2,4,5]
-let unsortableArray: [AnyObject?] = ["Hello", 4, nil]
+let unsortableArray: [Any?] = ["Hello", 4, nil]
 
-sortableArray.sort()
+sortableArray.sorted()
 
-//unsortableArray.sort()
-
+//unsortableArray.sorted()
 

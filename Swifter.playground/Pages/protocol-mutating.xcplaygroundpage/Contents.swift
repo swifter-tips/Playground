@@ -11,10 +11,10 @@ protocol Vehicle
 
 struct MyCar: Vehicle {
     let numberOfWheels = 4
-    var color = UIColor.blueColor()
+    var color = UIColor.blue
     
     mutating func changeColor() {
-        color = UIColor.redColor()
+        color = .red
     }
 }
 

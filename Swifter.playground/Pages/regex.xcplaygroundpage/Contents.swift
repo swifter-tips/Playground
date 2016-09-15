@@ -6,13 +6,13 @@ struct RegexHelper {
     
     init(_ pattern: String) throws {
         try regex = NSRegularExpression(pattern: pattern,
-            options: .CaseInsensitive)
+            options: .caseInsensitive)
     }
     
-    func match(input: String) -> Bool {
-        let matches = regex.matchesInString(input,
+    func match(_ input: String) -> Bool {
+        let matches = regex.matches(in: input,
                     options: [],
-                    range: NSMakeRange(0, input.characters.count))
+                    range: NSMakeRange(0, input.utf16.count))
         return matches.count > 0
     }
 }
@@ -34,10 +34,12 @@ if matcher.match(maybeMailAddress) {
 // 有效的邮箱地址
 
 
-infix operator =~ {
-associativity none
-precedence 130
+precedencegroup MatchPrecedence {
+    associativity: none
+    higherThan: DefaultPrecedence
 }
+
+infix operator =~: MatchPrecedence
 
 func =~(lhs: String, rhs: String) -> Bool {
     do {

@@ -3,7 +3,7 @@ import Foundation
 
 let absoluteZeroInCelsius = -273.15
 
-func convertToKelvin(celsius: Double) -> Double {
+func convertToKelvin(_ celsius: Double) -> Double {
     assert(celsius > absoluteZeroInCelsius, "输入的摄氏温度不能低于绝对零度")
     return celsius - absoluteZeroInCelsius
 }

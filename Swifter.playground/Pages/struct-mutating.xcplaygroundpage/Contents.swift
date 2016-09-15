@@ -24,6 +24,6 @@ struct User {
 }
 
 var u = User(age: 1, weight: 1, height: 1)
-u.gainWeight(2)
+u.gainWeight(newWeight: 2)
 u
 

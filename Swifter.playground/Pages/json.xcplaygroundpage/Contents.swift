@@ -13,8 +13,8 @@ let jsonString = "{\"menu\": {" +
                 "}" +
             "}}"
 
-let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(
-    jsonString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!,
+let json: Any = try! JSONSerialization.jsonObject(
+    with: jsonString.data(using: .utf8, allowLossyConversion: true)!,
     options: [])
 
 if let jsonDic = json as? NSDictionary {
@@ -37,13 +37,13 @@ if let jsonDic = json as? NSDictionary {
 }
 
 if let jsonDic = json as? NSDictionary,
-          menu = jsonDic["menu"] as? [String: AnyObject],
-         popup = menu["popup"],
-      popupDic = popup as? [String: AnyObject],
-     menuItems = popupDic["menuitem"],
-  menuItemsArr = menuItems as? [AnyObject],
-         item0 = menuItemsArr[0] as? [String: AnyObject],
-         value = item0["value"]
+   let menu = jsonDic["menu"] as? [String: AnyObject],
+   let popup = menu["popup"],
+   let popupDic = popup as? [String: AnyObject],
+   let menuItems = popupDic["menuitem"],
+   let menuItemsArr = menuItems as? [AnyObject],
+   let item0 = menuItemsArr[0] as? [String: AnyObject],
+      let value = item0["value"]
 {
     print(value)
 }

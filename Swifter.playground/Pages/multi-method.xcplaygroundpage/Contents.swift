@@ -5,15 +5,15 @@ class Pet {}
 class Cat: Pet {}
 class Dog: Pet {}
 
-func printPet(pet: Pet) {
+func printPet(_ pet: Pet) {
     print("Pet")
 }
 
-func printPet(cat: Cat) {
+func printPet(_ cat: Cat) {
     print("Meow")
 }
 
-func printPet(dog: Dog) {
+func printPet(_ dog: Dog) {
     print("Bark")
 }
 
@@ -21,7 +21,7 @@ printPet(Cat()) // Meow
 printPet(Dog()) // Bark
 printPet(Pet()) // Pet
 
-func printThem(pet: Pet, _ cat: Cat) {
+func printThem(_ pet: Pet, _ cat: Cat) {
     printPet(pet)
     printPet(cat)
 }
@@ -32,7 +32,7 @@ printThem(Dog(), Cat())
 // Pet
 // Meow
 
-func printThemAgain(pet: Pet, _ cat: Cat) {
+func printThemAgain(_ pet: Pet, _ cat: Cat) {
     if let aCat = pet as? Cat {
         printPet(aCat)
     } else if let aDog = pet as? Dog {

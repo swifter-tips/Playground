@@ -3,13 +3,13 @@
 import Foundation
 
 @objc protocol OptionalProtocol1 {
-    optional func optionalMethod()
+    @objc optional func optionalMethod()
 }
 
 @objc protocol OptionalProtocol2 {
-    optional func optionalMethod()        // 可选
+    @objc optional func optionalMethod()        // 可选
     func necessaryMethod()                // 必须
-    optional func anotherOptionalMethod() // 可选
+    @objc optional func anotherOptionalMethod() // 可选
 }
 
 class MyClass1: OptionalProtocol1 {

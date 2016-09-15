@@ -3,10 +3,11 @@
 import Foundation
 
 /// 1
-class A {
+class A: NSObject {
     let b: B
-    init() {
+    override init() {
         b = B()
+        super.init()
         b.a = self
     }
     
@@ -15,7 +16,7 @@ class A {
     }
 }
 
-class B {
+class B: NSObject {
     weak var a: A? = nil
     deinit {
         print("B deinit")
@@ -44,7 +45,7 @@ class RequestManager: RequestHandler {
 
 // Request.swift
 @objc protocol RequestHandler {
-    optional func requestFinished()
+    @objc optional func requestFinished()
 }
 
 class Request {

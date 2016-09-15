@@ -4,7 +4,7 @@ import UIKit
 class Drinking {
     typealias LiquidColor = UIColor
     var color: LiquidColor {
-        return LiquidColor.clearColor()
+        return .clear
     }
     
     class func drinking(name: String) -> Drinking {
@@ -24,23 +24,23 @@ class Drinking {
 
 class Coke: Drinking {
     override var color: LiquidColor {
-        return LiquidColor.blackColor()
+        return .black
     }
 }
 
 class Beer: Drinking {
     override var color: LiquidColor {
-        return LiquidColor.yellowColor()
+        return .yellow
     }
 }
 
-let coke = Drinking.drinking("Coke")
+let coke = Drinking.drinking(name: "Coke")
 coke.color // Black
 
-let beer = Drinking.drinking("Beer")
+let beer = Drinking.drinking(name: "Beer")
 beer.color // Yellow
 
 
-let cokeClass = NSStringFromClass(coke.dynamicType) //Coke
+let cokeClass = NSStringFromClass(type(of: coke)) //Coke
 
-let beerClass = NSStringFromClass(beer.dynamicType) //Beer
+let beerClass = NSStringFromClass(type(of: beer)) //Beer

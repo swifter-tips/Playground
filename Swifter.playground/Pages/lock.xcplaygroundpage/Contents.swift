@@ -9,7 +9,7 @@ func myMethod(anObj: AnyObject!) {
     objc_sync_exit(anObj)
 }
 
-func synchronized(lock: AnyObject, closure: () -> ()) {
+func synchronized(_ lock: AnyObject, closure: () -> ()) {
     objc_sync_enter(lock)
     closure()
     objc_sync_exit(lock)

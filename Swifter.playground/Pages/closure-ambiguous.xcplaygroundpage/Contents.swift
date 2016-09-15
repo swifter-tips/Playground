@@ -2,7 +2,7 @@
 import Foundation
 
 extension Int {
-    func times(f: Int -> ()) {
+    func times(f: (Int) -> ()) {
         print("Int")
         for i in 1...self {
             f(i)

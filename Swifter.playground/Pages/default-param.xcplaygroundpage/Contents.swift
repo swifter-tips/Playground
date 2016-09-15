@@ -10,6 +10,6 @@ func sayHello2(str1: String, str2: String, str3: String = "World") {
 }
 
 sayHello1(str2: " ", str3: "World")
-sayHello2("Hello", str2: " ")
+sayHello2(str1: "Hello", str2: " ")
 
 //输出都是 Hello World

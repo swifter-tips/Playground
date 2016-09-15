@@ -10,7 +10,7 @@ class MyClass: Copyable {
     var num = 1
     
     func copy() -> Self {
-        let result = self.dynamicType.init()
+        let result = type(of: self).init()
         result.num = num
         return result
     }

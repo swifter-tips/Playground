@@ -5,13 +5,13 @@ let int: Int = 0
 let float: Float = 0.0
 let double: Double = 0.0
 
-let intNumber: NSNumber = int
-let floatNumber: NSNumber = float
-let doubleNumber: NSNumber = double
+let intNumber: NSNumber = int as NSNumber
+let floatNumber: NSNumber = float as NSNumber
+let doubleNumber: NSNumber = double as NSNumber
 
-String.fromCString(intNumber.objCType)
-String.fromCString(floatNumber.objCType)
-String.fromCString(doubleNumber.objCType)
+String(validatingUTF8: intNumber.objCType)
+String(validatingUTF8: floatNumber.objCType)
+String(validatingUTF8: doubleNumber.objCType)
 
 // 结果分别为：
 // {Some "q"}
@@ -20,10 +20,12 @@ String.fromCString(doubleNumber.objCType)
 // 注意，fromCString 返回的是 `String?`
 
 
-let p = NSValue(CGPoint: CGPointMake(3, 3))
-String.fromCString(p.objCType)
+
+
+let p = NSValue(cgPoint: CGPoint(x: 3, y: 3))
+String(validatingUTF8: p.objCType)
 // {Some "{CGPoint=dd}"}
 
-let t = NSValue(CGAffineTransform: CGAffineTransformIdentity)
-String.fromCString(t.objCType)
+let t = NSValue(cgAffineTransform: .identity)
+String(validatingUTF8: t.objCType)
 // {Some "{CGAffineTransform=dddddd}"}

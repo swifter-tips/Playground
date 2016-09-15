@@ -1,20 +1,20 @@
 
 import UIKit
 
-UIView.animateWithDuration(0.3,
+UIView.animate(withDuration: 0.3,
     delay: 0.0,
-    options: [.CurveEaseIn, .AllowUserInteraction],
+    options: [.curveEaseIn, .allowUserInteraction],
     animations: {},
     completion: nil)
 
-struct YourOption: OptionSetType {
+struct YourOption: OptionSet {
     let rawValue: UInt
-    static let None = YourOption(rawValue: 0)
-    static let Option1 = YourOption(rawValue: 1)
-    static let Option2 = YourOption(rawValue: 1 << 1)
+    static let none = YourOption(rawValue: 0)
+    static let option1 = YourOption(rawValue: 1)
+    static let option2 = YourOption(rawValue: 1 << 1)
     //...
 }
 
-YourOption.Option1
+YourOption.option1
 
-[YourOption.Option1, YourOption.Option2]
+[YourOption.option1, YourOption.option2]

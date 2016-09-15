@@ -14,7 +14,7 @@ print("double:\(format)")
 // double:1.23
 
 extension Double {
-    func format(f: String) -> String {
+    func format(_ f: String) -> String {
         return String(format: "%\(f)f", self)
     }
 }

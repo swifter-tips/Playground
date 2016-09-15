@@ -7,8 +7,8 @@ class ClassB: ClassA { }
 let obj1: NSObject = ClassB()
 let obj2: NSObject = ClassB()
 
-obj1.isKindOfClass(ClassA.self)    // true
-obj2.isMemberOfClass(ClassA.self)  // false
+obj1.isKind(of: ClassA.self)    // true
+obj2.isMember(of: ClassA.self)  // false
 
 let obj: AnyObject = ClassB()
 

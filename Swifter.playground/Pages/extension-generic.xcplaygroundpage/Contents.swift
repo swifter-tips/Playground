@@ -9,7 +9,7 @@ extension Array {
     }
     
     func appendRandomDescription
-        <U: CustomStringConvertible>(input: U) -> String {
+        <U: CustomStringConvertible>(_ input: U) -> String {
             
             if let element = self.random {
                 return "\(element) " + input.description

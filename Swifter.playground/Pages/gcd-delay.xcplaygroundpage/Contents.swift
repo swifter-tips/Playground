@@ -1,54 +1,52 @@
 
 import Foundation
-import XCPlayground
-XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
+import PlaygroundSupport
+
+PlaygroundPage.current.needsIndefiniteExecution = true
 
 // 创建目标队列
-let workingQueue = dispatch_queue_create("my_queue", nil)
+let workingQueue = DispatchQueue(label: "my_queue")
+
 
 // 派发到刚创建的队列中，GCD 会负责进行线程调度
-dispatch_async(workingQueue) {
+
+workingQueue.async {
     // 在 workingQueue 中异步进行
     print("努力工作")
-    NSThread.sleepForTimeInterval(2)  // 模拟两秒的执行时间
+    Thread.sleep(forTimeInterval: 2)  // 模拟两秒的执行时间
     
-    dispatch_async(dispatch_get_main_queue()) {
+    DispatchQueue.main.async {
         // 返回到主线程更新 UI
         print("结束工作，更新 UI")
     }
 }
 
-let time: NSTimeInterval = 2.0
-let delay = dispatch_time(DISPATCH_TIME_NOW,
-    Int64(time * Double(NSEC_PER_SEC)))
-dispatch_after(delay, dispatch_get_main_queue()) {
+let time: TimeInterval = 2.0
+DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time) { 
     print("2 秒后输出")
 }
 
-
 import Foundation
 
-typealias Task = (cancel : Bool) -> Void
+typealias Task = (_ cancel : Bool) -> Void
 
-func delay(time:NSTimeInterval, task:()->()) ->  Task? {
+func delay(_ time: TimeInterval, task: @escaping ()->()) ->  Task? {
     
-    func dispatch_later(block:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(time * Double(NSEC_PER_SEC))),
-            dispatch_get_main_queue(),
-            block)
+    func dispatch_later(block: @escaping ()->()) {
+        let t = DispatchTime.now() + time
+        DispatchQueue.main.asyncAfter(deadline: t, execute: block)
     }
     
-    var closure: dispatch_block_t? = task
+    
+    
+    var closure: (()->Void)? = task
     var result: Task?
     
     let delayedClosure: Task = {
         cancel in
         if let internalClosure = closure {
             if (cancel == false) {
-                dispatch_async(dispatch_get_main_queue(), internalClosure);
+                DispatchQueue.main.async(execute: internalClosure)
             }
         }
         closure = nil
@@ -59,7 +57,7 @@ func delay(time:NSTimeInterval, task:()->()) ->  Task? {
     
     dispatch_later {
         if let delayedClosure = result {
-            delayedClosure(cancel: false)
+            delayedClosure(false)
         }
     }
     
@@ -67,8 +65,8 @@ func delay(time:NSTimeInterval, task:()->()) ->  Task? {
     
 }
 
-func cancel(task:Task?) {
-    task?(cancel: true)
+func cancel(_ task: Task?) {
+    task?(true)
 }
 
 delay(2) { print("2 秒后输出") }

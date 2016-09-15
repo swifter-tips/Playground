@@ -10,12 +10,12 @@ class MyClass {
 
 var pointer: UnsafeMutablePointer<MyClass>!
 
-pointer = UnsafeMutablePointer<MyClass>.alloc(1)
-pointer.initialize(MyClass())
+pointer = UnsafeMutablePointer<MyClass>.allocate(capacity: 1)
+pointer.initialize(to: MyClass())
 
-print(pointer.memory.a)
-pointer.destroy()
-pointer.dealloc(1)
+print(pointer.pointee.a)
+pointer.deinitialize()
+pointer.deallocate(capacity: 1)
 pointer = nil
 
 // 输出：

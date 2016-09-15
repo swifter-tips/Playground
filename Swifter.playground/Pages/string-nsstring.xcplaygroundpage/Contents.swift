@@ -8,10 +8,12 @@ for i in levels.characters {
 
 // 输出：
 // ABCDE
-
-if (levels as NSString).containsString("BC") {
+if (levels as NSString).contains("BC") {
     print("包含字符串")
 }
+
+levels.contains("")
+
 
 // 输出：
 // 包含字符串
@@ -19,14 +21,13 @@ if (levels as NSString).containsString("BC") {
 
 let nsRange = NSMakeRange(1, 4)
 // 编译错误
-// Cannot invoke `stringByReplacingCharactersInRange` with an argument list of type '(NSRange, withString: String)'
-//levels.stringByReplacingCharactersInRange(nsRange, withString: "AAAA")
+// Cannot convert value of type `NSRanve` to expected argument type 'Range<Index>'
+//levels.replacingCharacters(in: nsRange, with: "AAAA")
 
-let indexPositionOne = levels.startIndex.successor()
-let swiftRange = indexPositionOne ..< indexPositionOne.advancedBy(4)
-levels.stringByReplacingCharactersInRange(swiftRange, withString: "AAAA")
+let indexPositionOne = levels.characters.index(levels.startIndex, offsetBy: 1)
+let swiftRange = indexPositionOne ..< levels.characters.index(levels.startIndex, offsetBy: 5)
+levels.replacingCharacters(in: swiftRange, with: "AAAA")
 // 输出：
 // AAAAA
 
-(levels as NSString).stringByReplacingCharactersInRange(
-    nsRange, withString: "AAAA")
+(levels as NSString).replacingCharacters(in: nsRange, with: "AAAA")

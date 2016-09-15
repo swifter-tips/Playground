@@ -9,11 +9,11 @@ let strings = ["hello", "world"]
 
 import UIKit
 
+// [Any]
 let mixed1: [Any] = [1, "two", 3]
 
-// 如果不指明类型，由于 UIKit 的存在
-// 将被推断为 [NSObject]
-let objectArray = [1, "two", 3]
+// [NSObject]
+let objectArray = [1 as NSObject, "two" as NSObject, 3 as NSObject]
 
 let any = mixed1[0]  // Any 类型
 let nsObject = objectArray[0] // NSObject 类型
@@ -38,7 +38,7 @@ for value in mixed3 {
     case let .IntValue(i):
         print(i * 2)
     case let .StringValue(s):
-        print(s.capitalizedString)
+        print(s.capitalized)
     }
 }
 

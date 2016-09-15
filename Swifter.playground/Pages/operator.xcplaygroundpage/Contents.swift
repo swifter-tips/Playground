@@ -18,10 +18,12 @@ func +(left: Vector2D, right: Vector2D) -> Vector2D {
 let v4 = v1 + v2
 // v4 为 {x 3.0, y 7.0}
 
-infix operator +* {
-associativity none
-precedence 160
+precedencegroup DotProductPrecedence {
+    associativity: none
+    higherThan: MultiplicationPrecedence
 }
+
+infix operator +*: DotProductPrecedence
 
 func +* (left: Vector2D, right: Vector2D) -> Double {
     return left.x * right.x + left.y * right.y

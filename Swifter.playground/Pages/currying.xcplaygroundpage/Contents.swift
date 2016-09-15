@@ -5,7 +5,7 @@ func addOne(num: Int) -> Int {
     return num + 1
 }
 
-func addTo(adder: Int) -> Int -> Int {
+func addTo(_ adder: Int) -> (Int) -> Int {
     return {
         num in
         return num + adder
@@ -15,7 +15,7 @@ func addTo(adder: Int) -> Int -> Int {
 let addTwo = addTo(2)    // addToFour: Int -> Int
 let result = addTwo(6)   // result = 8
 
-func greaterThan(comparer: Int) -> Int -> Bool {
+func greaterThan(_ comparer: Int) -> (Int) -> Bool {
     return { $0 > comparer }
 }
 
@@ -50,7 +50,7 @@ class Control {
     var actions = [ControlEvent: TargetAction]()
     
     func setTarget<T: AnyObject>(target: T,
-        action: (T) -> () -> (), controlEvent: ControlEvent) {
+        action: @escaping (T) -> () -> (), controlEvent: ControlEvent) {
             
             actions[controlEvent] = TargetActionWrapper(
                 target: target, action: action)

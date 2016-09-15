@@ -1,7 +1,7 @@
 
 import Foundation
 
-func logIfTrue(predicate: () -> Bool) {
+func logIfTrue(_ predicate: () -> Bool) {
     if predicate() {
         print("True")
     }
@@ -12,7 +12,7 @@ logIfTrue({2 > 1})
 logIfTrue{2 > 1}
 
 
-func logIfTrue(@autoclosure predicate: () -> Bool) {
+func logIfTrue(_ predicate: @autoclosure () -> Bool) {
     if predicate() {
         print("True")
     }

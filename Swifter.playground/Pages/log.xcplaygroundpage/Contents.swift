@@ -9,7 +9,7 @@ func method() {
 
 method()
 
-func printLog<T>(message: T,
+func printLog<T>(_ message: T,
     file: String = #file,
     method: String = #function,
     line: Int = #line)
@@ -26,7 +26,7 @@ func method1() {
 
 method1()
 
-func printLogDebug<T>(message: T,
+func printLogDebug<T>(_ message: T,
     file: String = #file,
     method: String = #function,
     line: Int = #line)

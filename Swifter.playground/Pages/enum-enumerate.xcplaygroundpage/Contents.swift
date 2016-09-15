@@ -2,25 +2,25 @@
 import Foundation
 
 enum Suit: String {
-    case Spades = "黑桃"
-    case Hearts = "红桃"
-    case Clubs = "草花"
-    case Diamonds = "方片"
+    case spades = "黑桃"
+    case hearts = "红桃"
+    case clubs = "草花"
+    case diamonds = "方片"
 }
 
 enum Rank: Int, CustomStringConvertible {
-    case Ace = 1
-    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
-    case Jack, Queen, King
+    case ace = 1
+    case two, three, four, five, six, seven, eight, nine, ten
+    case jack, queen, king
     var description: String {
         switch self {
-        case .Ace:
+        case .ace:
             return "A"
-        case .Jack:
+        case .jack:
             return "J"
-        case .Queen:
+        case .queen:
             return "Q"
-        case .King:
+        case .king:
             return "K"
         default:
             return String(self.rawValue)
@@ -28,22 +28,22 @@ enum Rank: Int, CustomStringConvertible {
     }
 }
 
-protocol EnumeratableEnumType {
+protocol EnumeratableEnum {
     static var allValues: [Self] {get}
 }
 
-extension Suit: EnumeratableEnumType {
+extension Suit: EnumeratableEnum {
     static var allValues: [Suit] {
-        return [.Spades, .Hearts, .Clubs, .Diamonds]
+        return [.spades, .hearts, .clubs, .diamonds]
     }
 }
 
-extension Rank: EnumeratableEnumType {
+extension Rank: EnumeratableEnum {
     static var allValues: [Rank] {
-        return [.Ace, .Two, .Three,
-            .Four, .Five, .Six,
-            .Seven, .Eight, .Nine,
-            .Ten, .Jack, .Queen, .King]
+        return [.ace, .two, .three,
+            .four, .five, .six,
+            .seven, .eight, .nine,
+            .ten, .jack, .queen, .king]
     }
 }
 

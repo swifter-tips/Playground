@@ -9,21 +9,21 @@ let aBool = true
 let anArray = [1,2,3]
 let aDictionary = ["key1": "value1", "key2": "value2"]
 
-typealias ALC = ArrayLiteralConvertible
-typealias BLC = BooleanLiteralConvertible
-typealias DLC = DictionaryLiteralConvertible
-typealias FLC = FloatLiteralConvertible
-typealias NLC = NilLiteralConvertible
-typealias ILC = IntegerLiteralConvertible
-typealias SLC = StringLiteralConvertible
+typealias ALC = ExpressibleByArrayLiteral
+typealias BLC = ExpressibleByBooleanLiteral
+typealias DLC = ExpressibleByDictionaryLiteral
+typealias FLC = ExpressibleByFloatLiteral
+typealias NLC = ExpressibleByNilLiteral
+typealias ILC = ExpressibleByIntegerLiteral
+typealias SLC = ExpressibleByStringLiteral
 
 enum MyBool: Int {
     case myTrue, myFalse
 }
 
-extension MyBool: BooleanLiteralConvertible {
+extension MyBool: ExpressibleByBooleanLiteral {
     init(booleanLiteral value: Bool) {
-        self = value ? myTrue : myFalse
+        self = value ? .myTrue : .myFalse
     }
 }
 
@@ -40,7 +40,7 @@ myFalse.rawValue   // 1
 //    }
 //}
 
-class Person: StringLiteralConvertible {
+class Person: ExpressibleByStringLiteral {
     let name: String
     init(name value: String) {
         self.name = value

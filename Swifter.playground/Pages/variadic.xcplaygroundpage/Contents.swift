@@ -2,10 +2,10 @@
 import Foundation
 
 func sum(input: Int...) -> Int {
-    return input.reduce(0, combine: +)
+    return input.reduce(0, +)
 }
 
-print(sum(1,2,3,4,5))
+print(sum(input: 1,2,3,4,5))
 // 输出：15
 
 func myFunc(numbers: Int..., string: String) {
@@ -16,7 +16,7 @@ func myFunc(numbers: Int..., string: String) {
     }
 }
 
-myFunc(1, 2, 3, string: "hello")
+myFunc(numbers: 1, 2, 3, string: "hello")
 
 
 

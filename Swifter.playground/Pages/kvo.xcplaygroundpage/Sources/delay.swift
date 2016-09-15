@@ -1,26 +1,24 @@
 import Foundation
 
-public typealias Task = (cancel : Bool) -> Void
+public typealias Task = (_ cancel : Bool) -> Void
 
-public func delay(time:NSTimeInterval, task:()->()) ->  Task? {
+public func delay(_ time: TimeInterval, task: @escaping ()->()) ->  Task? {
     
-    func dispatch_later(block:()->()) {
-        dispatch_after(
-            dispatch_time(
-                DISPATCH_TIME_NOW,
-                Int64(time * Double(NSEC_PER_SEC))),
-            dispatch_get_main_queue(),
-            block)
+    func dispatch_later(block: @escaping ()->()) {
+        let t = DispatchTime.now() + time
+        DispatchQueue.main.asyncAfter(deadline: t, execute: block)
     }
     
-    var closure: dispatch_block_t? = task
+    
+    
+    var closure: (()->Void)? = task
     var result: Task?
     
     let delayedClosure: Task = {
         cancel in
         if let internalClosure = closure {
             if (cancel == false) {
-                dispatch_async(dispatch_get_main_queue(), internalClosure);
+                DispatchQueue.main.async(execute: internalClosure)
             }
         }
         closure = nil
@@ -31,7 +29,7 @@ public func delay(time:NSTimeInterval, task:()->()) ->  Task? {
     
     dispatch_later {
         if let delayedClosure = result {
-            delayedClosure(cancel: false)
+            delayedClosure(false)
         }
     }
     
@@ -39,6 +37,6 @@ public func delay(time:NSTimeInterval, task:()->()) ->  Task? {
     
 }
 
-public func cancel(task:Task?) {
-    task?(cancel: true)
+func cancel(_ task: Task?) {
+    task?(true)
 }

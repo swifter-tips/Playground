@@ -8,7 +8,7 @@ class MyClass {
 }
 
 let object = MyClass()
-let result = object.method(1)
+let result = object.method(number: 1)
 // result = 2
 
 
@@ -30,8 +30,8 @@ class MyClass1 {
 let f1 = MyClass1.method
 // class func method 的版本
 
-let f2: Int -> Int = MyClass1.method
+let f2: (Int) -> Int = MyClass1.method
 // 和 f1 相同
 
-let f3: MyClass1 -> Int -> Int = MyClass1.method
+let f3: (MyClass1) -> (Int) -> Int = MyClass1.method
 // func method 的柯里化版本

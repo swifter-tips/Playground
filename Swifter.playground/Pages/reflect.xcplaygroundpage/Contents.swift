@@ -12,9 +12,14 @@ let r = Mirror(reflecting: xiaoMing) // r 是 MirrorType
 print("xiaoMing 是 \(r.displayStyle!)")
 
 print("属性个数:\(r.children.count)")
-for i in r.children.startIndex..<r.children.endIndex {
-    print("属性名:\(r.children[i].0!)，值:\(r.children[i].1)")
+
+for child in r.children {
+    print("属性名:\(child.label)，值:\(child.value)")
 }
+
+//for i in r.children.startIndex..<r.children.endIndex {
+//    print("属性名:\(r.children[i].0!)，值:\(r.children[i].1)")
+//}
 
 // 输出：
 // xiaoMing 是 Struct
@@ -28,11 +33,11 @@ dump(xiaoMing)
 //  - name: XiaoMing
 //  - age: 16
 
-func valueFrom(object: Any, key: String) -> Any? {
+func valueFrom(_ object: Any, key: String) -> Any? {
     let mirror = Mirror(reflecting: object)
     
-    for i in mirror.children.startIndex..<mirror.children.endIndex {
-        let (targetKey, targetMirror) = mirror.children[i]
+    for child in mirror.children {
+        let (targetKey, targetMirror) = (child.label, child.value)
         if key == targetKey {
             return targetMirror
         }
